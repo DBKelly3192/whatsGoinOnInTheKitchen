@@ -1,0 +1,24 @@
+{
+  "name": "whatsGoinOnInTheKitchen",
+  "version": "1.0.0",
+  "description": "Grocery Store Shopping List App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DBKelly3192/whatsGoinOnInTheKitchen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DBKelly3192/whatsGoinOnInTheKitchen/issues"
+  },
+  "homepage": "https://github.com/DBKelly3192/whatsGoinOnInTheKitchen#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
