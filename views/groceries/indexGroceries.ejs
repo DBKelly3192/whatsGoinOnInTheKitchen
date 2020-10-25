@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+    <h1>Groceries List</h1>
+    <% for (let i = 0; i < allGroceries.length; i++) { %>
+      <ul>
+        <li><%= allGroceries[i].name %></li>
+        <li><%= allGroceries[i].price %></li>
+        <li><%= allGroceries[i].preferredStore %></li>
+      </ul>
+      <form action="/groceries/<%= i %>?_method=DELETE" method="POST">
+        <input type="submit" value="DELETE" />
+      </form>
+    <% } %>
+
+    <nav>
+      <a href="/groceries/new">Create New Grocery List Item</a>
+    </nav>
+
+<%- include('../partials/footer.ejs') %>

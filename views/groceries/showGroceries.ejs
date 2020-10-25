@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+    <h1>Groceries List Item</h1>
+      <ul>
+        <li><%= groceryItem.name %></li>
+        <li><%= groceryItem.price %></li>
+        <li><%= groceryItem.preferredStore %></li>
+      </ul>
+
+    <nav>
+      <a href="/groceries/new">Create New Grocery List Item</a>
+    </nav>
+
+<%- include('../partials/footer.ejs') %>

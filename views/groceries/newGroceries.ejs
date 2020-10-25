@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+<h1>Create New Grocery List Item</h1>
+<form action="/groceries" method="POST">
+    <label for="name">NAME</label>
+    <input type="text" name="name" id="name" />
+    <label for="price">PRICE</label>
+    <input type="text" name="price" id="price" />
+    <label for="preferredStore">PREFERRED STORE</label>
+    <input type="text" name="preferredStore" id="preferredStore" />
+    <input type="submit" value="Create Grocery List Item" />
+
+<%- include('../partials/footer.ejs') %>
