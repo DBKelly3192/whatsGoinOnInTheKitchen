@@ -1,49 +1,62 @@
-require("dotenv").config()
-const express = require("express")
+require('dotenv').config()
+const express = require('express')
 const app = express()
-const methodOverride = require("method-override")
+const methodOverride = require('method-override')
 const PORT = process.env.PORT
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-app.use(express.static("public"))
-app.use(methodOverride("_method"))
+app.use(express.static('public'))
+app.use(methodOverride('_method'))
 
-const groceries = require("./models/groceries.js")
+const groceries = require('./models/groceries.js')
 
 app.use((req, res, next) => {
-  console.log("I run for all routes!")
+  console.log('I run for all routes!')
   next()
 })
 
-app.get("/groceries/new", (req, res) => {
-  res.render("groceries/newGroceries.ejs")
-})
-
-app.get("/groceries/", (req, res) => {
-  res.render("groceries/indexGroceries.ejs",
+app.get('/groceries/', (req, res) => {
+  res.render('groceries/indexGroceries.ejs',
   {
     allGroceries: groceries
   })
 })
 
-app.post("/groceries", (req, res) => {
-  groceries.push(req.body)
-  res.redirect("/groceries")
+app.get('/groceries/new', (req, res) => {
+  res.render('groceries/newGroceries.ejs')
 })
 
-app.get("/groceries/:index", (req, res) => {
-  res.render("groceries/showGroceries.ejs",
+app.post('/groceries', (req, res) => {
+  groceries.push(req.body)
+  res.redirect('/groceries')
+})
+
+app.get('/groceries/:index/edit', (req, res) => {
+  res.render('groceries/editGroceries.ejs',
+  {
+    groceryItem: groceries[req.params.index],
+    index: req.params.index
+  })
+})
+
+app.put('/groceries/:index', (req, res) => {
+  groceries[req.params.index] = req.body
+  res.redirect('/groceries')
+})
+
+app.get('/groceries/:index', (req, res) => {
+  res.render('groceries/showGroceries.ejs',
   {
     groceryItem: groceries[req.params.index]
   })
 })
 
-app.delete("/groceries/:index", (req, res) => {
+app.delete('/groceries/:index', (req, res) => {
   groceries.splice(req.params.index, 1)
-  res.redirect("/groceries")
+  res.redirect('/groceries')
 })
 
 app.listen(PORT, () => {
-    console.log("listening on port" , PORT)
+    console.log('listening on port' , PORT)
 });

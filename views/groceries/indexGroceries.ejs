@@ -4,7 +4,7 @@
     <h1>Groceries List</h1>
     <% for (let i = 0; i < allGroceries.length; i++) { %>
       <ul>
-        <li><%= allGroceries[i].name %></li>
+        <li><a href="/groceries/<%= i %>/edit"><%= allGroceries[i].name %></a></li>
         <li><%= allGroceries[i].price %></li>
         <li><%= allGroceries[i].preferredStore %></li>
       </ul>
