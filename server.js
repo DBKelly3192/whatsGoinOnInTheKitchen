@@ -58,17 +58,27 @@ app.post('/groceries', (req, res) => {
   })
 })
 
-app.get('/groceries/:index/edit', (req, res) => {
-  res.render('groceries/editGroceries.ejs',
-  {
-    groceryItem: groceries[req.params.index],
-    index: req.params.index
+app.get('/groceries/:id/edit', (req, res) => {
+  // res.render('groceries/editGroceries.ejs',
+  // {
+  //   groceryItem: groceries[req.params.index],
+  //   index: req.params.index
+  // })
+  GroceryItem.findById(req.params.id, (err, foundGroceryItem) => {
+    res.render('groceries/editGroceries.ejs',
+    {
+      groceryItem: foundGroceryItem
+    })
   })
 })
 
-app.put('/groceries/:index', (req, res) => {
-  groceries[req.params.index] = req.body
-  res.redirect('/groceries')
+app.put('/groceries/:id', (req, res) => {
+  // groceries[req.params.index] = req.body
+  // res.redirect('/groceries')
+  GroceryItem.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel) =>
+  {
+    res.redirect('/groceries')
+  })
 })
 
 app.get('/groceries/:index', (req, res) => {
@@ -81,9 +91,13 @@ app.get('/groceries/:index', (req, res) => {
   })
 })
 
-app.delete('/groceries/:index', (req, res) => {
-  groceries.splice(req.params.index, 1)
-  res.redirect('/groceries')
+app.delete('/groceries/:id', (req, res) => {
+  // groceries.splice(req.params.index, 1)
+  // res.redirect('/groceries')
+  GroceryItem.findByIdAndRemove(req.params.id, (err, data) =>
+  {
+    res.redirect('/groceries')
+  })
 })
 
 app.listen(PORT, () => {

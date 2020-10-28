@@ -4,11 +4,11 @@
     <h1>Groceries List</h1>
     <% for (let i = 0; i < groceries.length; i++) { %>
       <ul>
-        <li><a href="/groceries/<%= i %>/edit"><%= groceries[i].name %></a></li>
+        <li><a href="/groceries/<%= groceries[i].id %>/edit"><%= groceries[i].name %></a></li>
         <li><%= groceries[i].price %></li>
         <li><%= groceries[i].preferredStore %></li>
       </ul>
-      <form action="/groceries/<%= i %>?_method=DELETE" method="POST">
+      <form action="/groceries/<%= groceries[i].id %>?_method=DELETE" method="POST">
         <input type="submit" value="DELETE" />
       </form>
     <% } %>

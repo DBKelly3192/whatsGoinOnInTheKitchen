@@ -2,7 +2,7 @@
 <%- include('../partials/nav.ejs') %>
 
 <h1>Edit Grocery Item</h1>
-<form action="/groceries/<%= index %>/?_method=PUT" method="POST">
+<form action="/groceries/<%= groceryItem.id %>/?_method=PUT" method="POST">
   <label for="name">NAME</label>
   <input type="text" name="name" id="name" value="<%= groceryItem.name %>" />
   <label for="price">PRICE</label>
