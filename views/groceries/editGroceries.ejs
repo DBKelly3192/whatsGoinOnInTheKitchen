@@ -3,13 +3,30 @@
 
 <h1>Edit Grocery Item</h1>
 <form action="/groceries/<%= groceryItem.id %>/?_method=PUT" method="POST">
+
   <label for="name">NAME</label>
   <input type="text" name="name" id="name" value="<%= groceryItem.name %>" />
+
   <label for="price">PRICE</label>
   <input type="text" name="price" id="price" value="<%= groceryItem.price %>" />
+
   <label for="preferredStore">PREFERRED STORE</label>
-  <input type="text" name="preferredStore" id="preferredStore" value="<%= groceryItem.preferredStore %>" />
+  <select name="preferredStore" id="preferredStore">
+      <option value="No Preference">No Preference</option>
+      <option value="Aldi's">Aldi's</option>
+      <option value="Costco">Costco</option>
+      <option value="Safeway">Safeway</option>
+      <option value="Shoppers">Shoppers</option>
+      <option value="Trader Joe's">Trader Joe's</option>
+      <option value="Whole Foods">Whole Foods</option>
+  </select>
+
   <input type="submit" value="Edit Grocery List Item" />
+
+</form>
+
+<form action="/groceries/<%= groceryItem.id %>?_method=DELETE" method="POST">
+  <input type="submit" value="Delete Item" />
 </form>
 
 <%- include('../partials/footer.ejs') %>

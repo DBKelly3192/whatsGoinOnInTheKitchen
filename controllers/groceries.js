@@ -2,54 +2,90 @@ const express = require('express')
 const router = express.Router()
 const GroceryItem = require('../models/groceries.js')
 
-router.use((req, res, next) => {
-  console.log('I run for all routes!')
-  next()
+const isAuthenticated = (req, res, next) =>  {
+	if (req.session.currentUser) {
+		return next()
+	} else {
+		res.redirect('/sessions/new')
+	}
+}
+
+router.get('/seed', (req, res)=>{
+    GroceryItem.create([
+        {
+          name: 'Grapefruit',
+          price: 5,
+          preferredStore: 'Aldi\'s',
+          userID: 'dk'
+        },
+        {
+          name: 'Chocolate',
+          price: 5,
+          preferredStore: 'Shoppers',
+          userID: 'dk'
+        },
+        {
+          name: 'Jameson',
+          price: 10,
+          preferredStore: 'Whole Foods',
+          userID: 'dk'
+        }
+    ], (err, data)=>{
+        res.redirect('/groceries');
+    })
 })
 
-router.get('/', (req, res) => {
-  GroceryItem.find({}, (error, allGroceries) => {
-    res.render('groceries/indexGroceries.ejs', {
-      groceries: allGroceries
+router.get('/', isAuthenticated, (req, res) => {
+  GroceryItem.find({userID: {$eq: req.session.currentUser.username}}, (error, allGroceries) => {
+    res.render('groceries/indexGroceries.ejs',
+    {
+      groceries: allGroceries,
+      currentUser: req.session.currentUser
     })
   })
 })
 
-router.get('/new', (req, res) => {
-  res.render('groceries/newGroceries.ejs')
-})
-
-router.post('/', (req, res) => {
-  GroceryItem.create(req.body, (error, createdGroceryItem) => {
-    res.redirect('/groceries')
+router.get('/new', isAuthenticated, (req, res) => {
+  res.render('groceries/newGroceries.ejs',
+  {
+    currentUser: req.session.currentUser
   })
 })
 
-router.get('/:id/edit', (req, res) => {
+router.post('/', isAuthenticated, (req, res) => {
+  GroceryItem.create(req.body, (error, createdGroceryItem) => {
+    res.redirect('groceries')
+  })
+})
+
+router.get('/:id/edit', isAuthenticated, (req, res) => {
   GroceryItem.findById(req.params.id, (err, foundGroceryItem) => {
     res.render('groceries/editGroceries.ejs',
     {
-      groceryItem: foundGroceryItem
+      groceryItem: foundGroceryItem,
+      currentUser: req.session.currentUser
     })
   })
 })
 
-router.put('/:id', (req, res) => {
-  GroceryItem.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel) =>
-  {
+router.put('/:id', isAuthenticated, (req, res) => {
+  GroceryItem.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel) => {
     res.redirect('/groceries')
   })
 })
 
-router.get('/:index', (req, res) => {
-  Fruit.findById(req.params.id, (err, foundGroceryItem) => {
-    res.send(foundGroceryItem)
+router.get('/:id', isAuthenticated, (req, res) => {
+  GroceryItem.findById(req.params.id, (err, foundGroceryItem) => {
+    res.render('groceries/showGroceries.ejs',
+    {
+      groceryItem: foundGroceryItem,
+      currentUser: req.session.currentUser
+    })
   })
 })
 
-router.delete('/:id', (req, res) => {
-  GroceryItem.findByIdAndRemove(req.params.id, (err, data) =>
-  {
+router.delete('/:id', isAuthenticated, (req, res) => {
+  GroceryItem.findByIdAndRemove(req.params.id, (err, data) => {
     res.redirect('/groceries')
   })
 })

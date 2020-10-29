@@ -3,13 +3,27 @@
 
 <h1>Create New Grocery List Item</h1>
 <form action="/groceries" method="POST">
+  <input type="hidden" name="userID" id="userID" value="<%= currentUser.username %>" />
+
   <label for="name">NAME</label>
   <input type="text" name="name" id="name" />
+
   <label for="price">PRICE</label>
   <input type="text" name="price" id="price" />
+
   <label for="preferredStore">PREFERRED STORE</label>
-  <input type="text" name="preferredStore" id="preferredStore" />
+  <select name="preferredStore" id="preferredStore">
+      <option value="No Preference">No Preference</option>
+      <option value="Aldi's">Aldi's</option>
+      <option value="Costco">Costco</option>
+      <option value="Safeway">Safeway</option>
+      <option value="Shoppers">Shoppers</option>
+      <option value="Trader Joe's">Trader Joe's</option>
+      <option value="Whole Foods">Whole Foods</option>
+  </select>
+
   <input type="submit" value="Create Grocery List Item" />
+  
 </form>
 
 <%- include('../partials/footer.ejs') %>

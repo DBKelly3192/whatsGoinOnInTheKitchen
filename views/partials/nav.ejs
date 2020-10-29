@@ -1,0 +1,13 @@
+<nav>
+  <% if (currentUser) { %>
+    <a href="/groceries">Grocery List</a>
+    <a href="/groceries/new">Create a new Grocery Item</a>
+    Welcome <%= currentUser.username %>
+    <form action="/sessions?_method=DELETE" method="POST">
+      <input type="submit" value="Log Out" />
+    </form>
+  <% } else { %>
+    <button type="button" name="button"><a href="/users/new">Sign Up</a></button>
+    <button type="button" name="button"><a href="/sessions/new">Log In</a></button>
+  <% } %>
+</nav>
