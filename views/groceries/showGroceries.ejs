@@ -2,15 +2,25 @@
 <%- include('../partials/nav.ejs') %>
 
     <h1>Groceries List Item</h1>
+    
       <ul>
         <li><a href="/groceries/<%= groceryItem.id %>/edit"><%= groceryItem.item %></a></li>
+
         <li><%= groceryItem.brand %></li>
+
         <li><%= groceryItem.price %></li>
+
+        <li>
+          <%= groceryItem.quantity %>
+          <%= groceryItem.quantityUnit %>
+        </li>
+
         <li><%= groceryItem.preferredStore %></li>
       </ul>
 
     <nav>
       <a href="/groceries/new">Create New Grocery List Item</a>
+      
       <a href="/groceries">Back to Grocery List</a>
     </nav>
 

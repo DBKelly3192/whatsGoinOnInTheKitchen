@@ -2,17 +2,14 @@
 <%- include('../partials/nav.ejs') %>
 
     <h1>Grocery List</h1>
-    <% for (let i = 0; i < groceries.length; i++) { %>
-      <ul>
+
+    <ul>
+      <% for (let i = 0; i < groceries.length; i++) { %>
+      
         <li><a href="/groceries/<%= groceries[i].id %>"><%= groceries[i].item %></a></li>
-        <li><%= groceries[i].brand %></li>
-        <li><%= groceries[i].price %></li>
-        <li><%= groceries[i].preferredStore %></li>
-      </ul>
-      <form action="/groceries/<%= groceries[i].id %>?_method=DELETE" method="POST">
-        <input type="submit" value="DELETE" />
-      </form>
-    <% } %>
+
+      <% } %>
+    </ul>
 
     <nav>
       <a href="/groceries/new">Create New Grocery List Item</a>

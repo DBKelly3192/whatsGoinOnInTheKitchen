@@ -2,31 +2,62 @@
 <%- include('../partials/nav.ejs') %>
 
 <h1>Create New Grocery List Item</h1>
+
 <form action="/groceries" method="POST">
-  <input type="hidden" name="userID" id="userID" value="<%= currentUser.username %>" />
 
-  <label for="item">ITEM</label>
-  <input type="text" name="item" id="item" />
+  <ul>
+    <input type="hidden" name="userID" id="userID" value="<%= currentUser.username %>" />
 
-  <label for="brand">BRAND</label>
-  <input type="text" name="brand" id="brand" />
+    <li>
+      <label for="item">ITEM</label>
+      <input type="text" name="item" id="item" />
+    </li>
 
-  <label for="price">PRICE</label>
-  <input type="text" name="price" id="price" />
+    <li>
+      <label for="brand">BRAND</label>
+      <input type="text" name="brand" id="brand" />
+    </li>
 
-  <label for="preferredStore">PREFERRED STORE</label>
-  <select name="preferredStore" id="preferredStore">
-      <option value="No Preference">No Preference</option>
-      <option value="Aldi's">Aldi's</option>
-      <option value="Costco">Costco</option>
-      <option value="Safeway">Safeway</option>
-      <option value="Shoppers">Shoppers</option>
-      <option value="Trader Joe's">Trader Joe's</option>
-      <option value="Whole Foods">Whole Foods</option>
-  </select>
+    <li>
+      <label for="price">PRICE</label>
+      <input type="text" name="price" id="price" />
+    </li>
 
+    <li>
+      <label for="quantity">QUANTITY</label>
+      <input type="text" name="quantity" id="quantity" />
+
+      <label for="quantityUnit">QUANTITY UNIT</label>
+      <select name="quantityUnit" id="quantityUnit">
+        <option value="Please Select">Please Select</option>
+        <option value="lb">lb</option>
+        <option value="oz">oz</option>
+        <option value="gal">gal</option>
+        <option value="qt">qt</option>
+        <option value="pt">pt</option>
+        <option value="fl oz">fl oz</option>
+        <option value="kg">kg</option>
+        <option value="g">g</option>
+        <option value="L">L</option>
+        <option value="ml">ml</option>
+      </select>
+    </li>
+
+    <li>
+      <label for="preferredStore">PREFERRED STORE</label>
+      <select name="preferredStore" id="preferredStore">
+        <option value="Please Select">Please Select</option>
+        <option value="Aldi's">Aldi's</option>
+        <option value="Costco">Costco</option>
+        <option value="Safeway">Safeway</option>
+        <option value="Shoppers">Shoppers</option>
+        <option value="Trader Joe's">Trader Joe's</option>
+        <option value="Whole Foods">Whole Foods</option>
+      </select>
+    </li>
+  </ul>
+ 
   <input type="submit" value="Create Grocery List Item" />
-  
 </form>
 
 <%- include('../partials/footer.ejs') %>
