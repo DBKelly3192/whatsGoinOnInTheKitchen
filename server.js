@@ -24,6 +24,7 @@ app.use(
 
 mongoose.connect(mongodbURI,
   {
+  useCreateIndex: true,
   useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true

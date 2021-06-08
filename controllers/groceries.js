@@ -13,25 +13,25 @@ const isAuthenticated = (req, res, next) =>  {
 router.get('/seed', (req, res)=>{
     GroceryItem.create([
         {
-          name: 'Aspirin',
+          item: 'Aspirin',
           price: 5,
           preferredStore: 'Whole Foods',
           userID: 'Deja'
         },
         {
-          name: 'Jameson',
+          item: 'Jameson',
           price: 10,
           preferredStore: 'Safeway',
           userID: 'Mohammed'
         },
         {
-          name: 'French Press Coffee',
+          item: 'French Press Coffee',
           price: 20,
           preferredStore: 'Trader Joe\'s',
           userID: 'Matt'
         },
 				{
-          name: 'Haribo Gummy Bears',
+          item: 'Haribo Gummy Bears',
           price: 5,
           preferredStore: 'No Preference',
           userID: 'Brian'

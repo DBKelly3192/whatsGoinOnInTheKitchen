@@ -4,8 +4,8 @@
 <h1>Edit Grocery Item</h1>
 <form action="/groceries/<%= groceryItem.id %>/?_method=PUT" method="POST">
 
-  <label for="name">NAME</label>
-  <input type="text" name="name" id="name" value="<%= groceryItem.name %>" />
+  <label for="item">ITEM</label>
+  <input type="text" name="item" id="item" value="<%= groceryItem.item %>" />
 
   <label for="price">PRICE</label>
   <input type="text" name="price" id="price" value="<%= groceryItem.price %>" />
