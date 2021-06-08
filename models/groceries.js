@@ -2,8 +2,9 @@ const mongoose = require('mongoose')
 
 const groceryItemSchema = new mongoose.Schema({
   item: {type: String, required: true},
-  price: {type: Number, required: true},
-  preferredStore: {type: String, required: true},
+  brand: {type: String, required: false},
+  price: {type: Number, required: false},
+  preferredStore: {type: String, required: false},
   userID: {type: String, required: true}
 })
 

@@ -5,6 +5,7 @@
     <% for (let i = 0; i < groceries.length; i++) { %>
       <ul>
         <li><a href="/groceries/<%= groceries[i].id %>"><%= groceries[i].item %></a></li>
+        <li><%= groceries[i].brand %></li>
         <li><%= groceries[i].price %></li>
         <li><%= groceries[i].preferredStore %></li>
       </ul>
